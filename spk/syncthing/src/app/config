@@ -1,0 +1,14 @@
+{
+    ".url": {
+        "com.synocommunity.packages.syncthing": {
+            "title": "Syncthing",
+            "desc": "Syncthing Web UI",
+            "icon": "images/syncthing-{0}.png",
+            "type": "url",
+            "protocol": "http",
+            "port": "8080",
+            "url": "/",
+            "allUsers": false
+        }
+    }
+}
