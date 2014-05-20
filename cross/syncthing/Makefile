@@ -11,7 +11,6 @@ HOMEPAGE = http://www.syncthing.net/
 COMMENT  = Syncthing replaces Dropbox and BitTorrent Sync with something open, trustworthy and decentralized. Your data is your data alone and you deserve to choose where it is stored, if it is shared with some third party and how ...
 LICENSE  =
 
-EXTRACT_PATH = $(WORK_DIR)/$(PKG_DIR)
 CONFIGURE_TARGET = nop
 COMPILE_TARGET = nop
 INSTALL_TARGET = myInstall
