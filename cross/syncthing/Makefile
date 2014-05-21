@@ -1,5 +1,5 @@
 PKG_NAME = syncthing
-PKG_VERS = v0.8.7
+PKG_VERS = v0.8.8
 PKG_EXT = tar.gz
 PKG_DIST_NAME = $(PKG_NAME)-linux-$(SYNCTHING_ARCH)-$(PKG_VERS).$(PKG_EXT)
 PKG_DIST_SITE = https://github.com/calmh/syncthing/releases/download/$(PKG_VERS)
@@ -18,11 +18,11 @@ GNU_CONFIGURE = 1
 CONFIGURE_ARGS = 
 
 # Define SYNCTHING_ARCH as per SyncThing standards
-ifeq ($(findstring $(ARCH),88f5281 88f6281 armada370 armadaxp),$(ARCH))
-SYNCTHING_ARCH = arm
+ifeq ($(findstring $(ARCH),88f6281 88f6282),$(ARCH))
+SYNCTHING_ARCH = armv5
 endif
-ifeq ($(findstring $(ARCH),powerpc ppc824x ppc853x),$(ARCH))
-SYNCTHING_ARCH = powerpc
+ifeq ($(findstring $(ARCH),qoriq ppc853x ppc854x ppc824x),$(ARCH))
+$(error Unsupported ARCH $(ARCH))
 endif
 ifeq ($(findstring $(ARCH),evansport),$(ARCH))
 SYNCTHING_ARCH = 386
@@ -30,13 +30,12 @@ endif
 ifeq ($(findstring $(ARCH),x86 cedarview bromolow),$(ARCH))
 SYNCTHING_ARCH = amd64
 endif
-ifeq ($(findstring $(ARCH),qoriq),$(ARCH))
-SYNCTHING_ARCH = ppc_quoriq
-endif
 ifeq ($(SYNCTHING_ARCH),)
 $(error Unsupported ARCH $(ARCH))
 endif
 
 include ../../mk/spksrc.cross-cc.mk
 
-
+myInstall:
+    mkdir -p $(STAGING_INSTALL_PREFIX)/bin
+    install -m 755 $(WORK_DIR)/$(PKG_DIR)/syncthing $(STAGING_INSTALL_PREFIX)/bin/
